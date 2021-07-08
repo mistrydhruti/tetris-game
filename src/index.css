@@ -1,0 +1,203 @@
+@import 'https://fonts.googleapis.com/css?family=Press+Start+2P';
+body {
+  margin: 0;
+    background-image: url("b1.gif");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    font-family: 'Press Start 2P',cursive;
+
+  
+}
+
+:root {
+  --bg-color: rgba(150, 150, 150, 1);
+
+  /* Border Colors are all transparent colors. These will tint or shade the background color of the square. */
+  --border-left-color: rgba(255, 255, 255, 0.20);
+  --border-top-color: rgba(255, 255, 255, 0.33);
+  --border-right-color: rgba(0, 0, 0, 0.15);
+  --border-bottom-color: rgba(0, 0, 0, 0.5);
+
+  /* Square Colors:  background colors for the squares.*/
+  --color-0: #eaeaea  ;
+  --color-1: #FF0099  ;
+  --color-2: #FFFF00  ;
+  --color-3: #011FFD  ;
+  --color-4: #CC00FF  ;
+  --color-5: #00FF00  ;
+  --color-6: #099FFF  ;
+  --color-7: #352128  ;
+
+  /* Button Colors */
+  --button-color-t: rgba(200, 200, 200, 1);
+  --button-color-r: rgba(150, 150, 150, 1);
+  --button-color-b: rgba(120, 120, 120, 1);
+  --button-color-l: rgba(222, 222, 222, 1);
+
+  /* Numbers define values that will be used throughout the CSS.
+  --tile-size: 20px for example will set size of the grid squares. */
+  --cols: 10;
+  --rows: 18;
+  --tile-size: 22px;
+}
+/* Colors */
+.color-0 {
+  background-color: var(--color-0);
+}
+
+.color-1 {
+  background-color: var(--color-1);
+}
+
+.color-2 {
+  background-color: var(--color-2);
+}
+
+.color-3 {
+  background-color: var(--color-3);
+}
+
+.color-4 {
+  background-color: var(--color-4);
+}
+
+.color-5 {
+  background-color: var(--color-5);
+}
+
+.color-6 {
+  background-color: var(--color-6);
+}
+
+.color-7 {
+  background-color: var(--color-7);
+}
+/* Grid Square */
+.grid-square {
+  /* border-style: solid; */
+  width: var(--tile-size);
+  height: var(--tile-size);
+  border-radius: 1.5px;
+  margin: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+.grid-board {
+  display: grid;
+  grid-template-columns: repeat(var(--cols), var(--tile-size));
+  align-self: flex-start;
+  grid-area: c;
+  grid-gap: 1px; /* Add a gap! */
+  border-radius: 10px;
+  
+
+  
+}
+/* Next Block */
+.next-block {
+  display: grid;
+  grid-template-columns: repeat(4, var(--tile-size));
+  align-self: flex-start;
+  grid-area: l; /* Grid area l left column */
+  grid-gap: 1px; /* Add a gap! */
+  border: 3px solid gray;
+
+}
+/* score-board */
+.score-board {
+  grid-area: r;
+  display: flex;
+  flex-direction: column;
+  color: gainsboro;
+  text-align: center;
+ 
+}
+
+.score-board-button {
+  display: block;
+  padding: 1em;
+  background-color:gainsboro;
+  color: black;
+  border: 5px solid gray; 
+  border-radius: 10px;
+  font-family: 'Press Start 2P';
+  width: 150%;
+  margin: 5px;
+  font-size: 15px;
+  
+}
+/* App */
+.App {
+  --col-side: calc(var(--tile-size) * 4);
+  --col-center: calc(var(--tile-size) * 10);
+  --grid-height: calc(var(--tile-size) * 19);
+
+  width: calc(var(--tile-size) * (4 + 1 + 10 + 1 + 4));
+  margin: auto;
+  display: grid;
+
+  grid-gap: var(--tile-size) var(--tile-size);
+  /* Defines three columns of `--col-side`, `--col-center`, and `--col-side` widths. */
+  grid-template-columns: var(--col-side) var(--col-center) var(--col-side);
+  /* Defines three rows of `100px`, `--grid-height`, and 100px. */
+  grid-template-rows: 100px var(--grid-height) 100px;
+  color: cornsilk;
+/* This defines the areas on the grid with names: 'h', 'l', 'c', 'r',
+and 'b'. The '.' represents an empty cell on the grid. */
+  grid-template-areas: "h h h"
+                       "l c r"
+                       ". b .";
+
+}
+/* App-header */
+.App-header {
+  grid-area: h;
+  height: 5px;
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom:0;
+}
+/* score-board */
+.score-board {
+  grid-area: r;
+}
+/* controls */
+.controls {
+  grid-area: b;
+  display: flex;
+  flex-direction: row;
+}
+/* Control Button */
+.control-button {
+  --size: calc(var(--tile-size) * 2.5);
+  width: var(--size+1);
+  height: var(--size);
+  font-size: 45px;
+  display: block;
+  background-color:gainsboro;
+  color: black;
+  border-radius: 8px;
+  align-items: center;
+  
+}
+/* Message Popup Styles */
+.message-popup {
+  position: absolute;
+  left: 50.5%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: calc(var(--tile-size) * 11);
+  height: calc(var(--tile-size) * 5);
+  background-color: rgba(255, 255, 255, 0.5);
+  text-align: center;
+  border: 2px solid #010002ea; 
+  border-radius: 10px;
+  align-content: center;
+  color: black;
+ 
+}
+.message-popup.hidden {
+  display: none;
+}
